@@ -4,10 +4,21 @@ var pg = require('pg');
 var path = require('path');
 var connectionString = require(path.join(__dirname, '../', 'config'));
 
+/**
+ *  Routes to home /
+ */
 router.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('Home Sweet Home');
 });
 
+
+/**
+ * path: /api/v1/expenses
+ * operations:
+ *   -  httpMethod: POST
+ *      summary: Adds a new expense
+ *      notes: If succed save new record expense and return the list of expense which not deleted
+ */
 router.post('/api/v1/expenses', function(req, res) {
 
     var results = [];
@@ -45,6 +56,13 @@ router.post('/api/v1/expenses', function(req, res) {
     });
 });
 
+/**
+ * path: /api/v1/expenses
+ * operations:
+ *   -  httpMethod: GET
+ *      summary: Returns a new expense
+ *      notes: If succed return the list of expense which not deleted
+ */
 router.get('/api/v1/expenses', function(req, res) {
 
     var results = [];
@@ -76,6 +94,19 @@ router.get('/api/v1/expenses', function(req, res) {
 
 });
 
+/**
+ * path: /api/v1/expenses
+ * operations:
+ *   -  httpMethod: PUT
+ *      summary: Updates an expense record
+ *      notes: If succed update a expense record and return the list of expense which not deleted
+ *      parameters:
+ *        - name: expense_id
+ *          description: ID row of expense
+ *          paramType: query
+ *          required: true
+ *          dataType: integer
+ */
 router.put('/api/v1/expenses/:expense_id', function(req, res) {
 
     var results = [];
@@ -115,6 +146,19 @@ router.put('/api/v1/expenses/:expense_id', function(req, res) {
 
 });
 
+/**
+ * path: /api/v1/expenses
+ * operations:
+ *   -  httpMethod: DELETE
+ *      summary: Deletes an expense record
+ *      notes: If succed delete a expense record and return the list of expense which not deleted
+ *      parameters:
+ *        - name: expense_id
+ *          description: ID row of expense
+ *          paramType: query
+ *          required: true
+ *          dataType: integer
+ */
 router.delete('/api/v1/expenses/:expense_id', function(req, res) {
 
     var results = [];
