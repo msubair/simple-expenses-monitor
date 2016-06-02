@@ -7,8 +7,8 @@ var connectionString = require(path.join(__dirname, '../', 'config'));
 /**
  *  Routes to home /
  */
-router.get('/', function (req, res) {
-  res.send('Home Sweet Home');
+router.get('/', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../views', 'index.html'));
 });
 
 
